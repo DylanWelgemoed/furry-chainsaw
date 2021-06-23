@@ -1,10 +1,6 @@
-using System;
 using System.IO;
-using Enchilada.Filesystem;
 using MassTransit;
 using MassTransit.MessageData;
-using MassTransit.MessageData.Enchilada;
-using MassTransitMessageDataTest.Commands;
 using MassTransitMessageDataTest.Consumer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,9 +44,9 @@ namespace MassTransitMessageDataTest
         {
             var directory = "C:\\MessageData";
 
-            var messageDataRepository = this.CreateMessageDataRepository(directory);
+            var messageDataRepository = CreateMessageDataRepository(directory);
 
-            services.AddSingleton<IMessageDataRepository>(messageDataRepository);
+            services.AddSingleton(messageDataRepository);
 
             services.AddMassTransit(x =>
             {
